@@ -1,0 +1,17 @@
+/*
+	This will compile to:
+	
+	body {
+		background: darkgray;
+		opacity: .7;
+		
+		font: 72px "Comic Sans", cursive !important;
+	}
+*/
+
+body {
+	background: darkgrey;
+	transparency: .7;
+	
+	font: 72px "Comic Sans", cursive !please;
+}
