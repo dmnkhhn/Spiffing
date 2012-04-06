@@ -52,8 +52,8 @@ if(isset($f)) {
 		set_header('Content-Type: text/css');
 		
 		//  Create an array of find and replaces
-		$find = array('colour', 'grey', '!please', 'transparency');
-		$replace = array('color', 'gray', '!important', 'opacity');
+		$find = array('colour', 'grey', '!please', 'transparency', 'centre');
+		$replace = array('color', 'gray', '!important', 'opacity', 'center');
 		
 		//  Read the file contents and spit 'em out
 		echo str_ireplace($find, $replace, file_get_contents($file));
