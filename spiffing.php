@@ -8,12 +8,12 @@
 		 */
 		public $dictionary 		= array(
 			// Queen's English	// Primitive English from our stateside friends from across the pond.
-			'colour'			=> 'color',
-			'grey'				=> 'gray',
-			'!please'			=> '!important',
+			'colour'		=> 'color',
+			'grey'			=> 'gray',
+			'!please'		=> '!important',
 			'transparency'		=> 'opacity',
-			'centre'			=> 'center',
-			'plump'				=> 'bold',
+			'centre'		=> 'center',
+			'plump'			=> 'bold',
 			'photograph'		=> 'image',
 			'capitalise'		=> 'capitalize'
 		);
@@ -48,7 +48,7 @@
 				$this->css = $raw;
 			} else if ( isset( $_SERVER ) ) {
 				// Santise the string.
-				$this->file 	= dirname( __FILE__ )
+				$this->file = dirname( __FILE__ )
 								. '/' . str_replace( $this->hook, '',
 									filter_input( INPUT_GET, 'file', FILTER_SANITIZE_STRING ) );
 				if( !file_exists( $this->file ) or !is_readable( $file ) ) {
@@ -66,11 +66,11 @@
 		 */
 		public function process() {
 			// The finished CSS.
-			$processed			= '';
+			$processed	= '';
 			// The array which will hold all found CSS attributes to be repalced.
-			$replacements		= array();
+			$replacements	= array();
 			// The magic pattern which finds ONLY attributes.
-			$pattern			= '/(?:(?:\s|\t)*|\;)([\w-]*):/i';
+			$pattern	= '/(?:(?:\s|\t)*|\;)([\w-]*):/i';
 			// One should begin by searching the CSS for exlusive Britishness.
 			preg_match_all( $pattern, $this->css, $matches );
 			foreach( $matches[1] as $index => $value ) {
