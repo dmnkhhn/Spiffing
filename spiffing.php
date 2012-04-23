@@ -18,6 +18,22 @@
 			'capitalise'		=> 'capitalize'
 		);
 		/*
+		 * The 'fail gracefully' variable allows the user to load the 'NOT FOUND' header if, well, nothing is found.
+		 * If, however, this is set to TRUE, then nothing will be shown at all.
+		 *
+		 * @var 	boolean
+		 * @access 	public
+		 */
+		public $fail_gracefully	= FALSE;
+		/*
+		 * Did the operation fail? We shall see.
+		 * This should be set to FALSE by default.
+		 *
+		 * @var		boolean
+		 * @access	private
+		 */
+		private $we_failed		= FALSE;
+		/*
 		 * The URL hook
 		 *
 		 * @var		string
@@ -42,15 +58,16 @@
 		 * Constructor
 		 *
 		 * @param 	string
+		 * @return 	void
 		 */
 		function __construct($raw = '') {
 			if ( !empty( $raw )) {
 				$this->css = $raw;
 			} else if ( isset( $_SERVER ) ) {
 				// Santise the string.
-				$this->file = dirname( __FILE__ )
-								. '/' . str_replace( $this->hook, '',
-									filter_input( INPUT_GET, 'file', FILTER_SANITIZE_STRING ) );
+				$this->file 	= dirname( __FILE__ )
+						. '/' . str_replace( $this->hook, '',
+						filter_input( INPUT_GET, 'file', FILTER_SANITIZE_STRING ) );
 				if( !file_exists( $this->file ) or !is_readable( $file ) ) {
 					$this->not_found();
 				}
@@ -63,14 +80,15 @@
 		 *
 		 * @param	void
 		 * @access 	public
+		 * @return 	string
 		 */
 		public function process() {
 			// The finished CSS.
-			$processed	= '';
+			$processed			= '';
 			// The array which will hold all found CSS attributes to be repalced.
-			$replacements	= array();
+			$replacements		= array();
 			// The magic pattern which finds ONLY attributes.
-			$pattern	= '/(?:(?:\s|\t)*|\;)([\w-]*):/i';
+			$pattern			= '/(?:(?:\s|\t)*|\;)([\w-]*):/i';
 			// One should begin by searching the CSS for exlusive Britishness.
 			preg_match_all( $pattern, $this->css, $matches );
 			foreach( $matches[1] as $index => $value ) {
@@ -97,6 +115,7 @@
 		 *
 		 * @param	string
 		 * @access 	private
+		 * @return 	void
 		 */
 		private function set_header($header) {
 			//  Safely set the header
@@ -109,12 +128,28 @@
 		 *
 		 * @param	void
 		 * @access 	private
+		 * @return 	void
 		 */
 		private function not_found() {
-			//  Set the header
-			set_header('HTTP/1.0 404 Not Found');
-			//  And stop execution. We don't need no content.
-			exit;
+			// Since we got called, we failed.
+			$this->we_failed = TRUE;
+			// Let's check if we should do something about that.
+			if ( $this->fail_gracefully == TRUE ) {
+				//  Set the header
+				$this->set_header( 'HTTP/1.0 404 Not Found' );
+				//  And stop execution. We don't need no content.
+				exit;
+			}
+		}
+		/*
+		 * A public access of the failure variable.
+		 *
+		 * @param 	void
+		 * @access 	public
+		 * @return 	boolean
+		 */
+		public function did_we_fail() {
+			return $this->we_failed;
 		}
 		/*
 		 * Deconstructor
