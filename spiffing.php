@@ -167,7 +167,7 @@
 			// Since we got called, we failed.
 			$this->we_failed = TRUE;
 			// Let's check if we should do something about that.
-			if ( $this->fail_gracefully == TRUE ) {
+			if ( $this->fail_gracefully == FALSE ) {
 				//  Set the header
 				$this->set_header( 'HTTP/1.0 404 Not Found' );
 				//  And stop execution. We don't need no content.
