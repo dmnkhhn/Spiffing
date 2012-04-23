@@ -1,4 +1,37 @@
 <?php
+/*
+ * The Queen's Stylesheet
+ *
+ * Brits, take control of the web. Spiffing allows you to write your CSS and stylesheets 
+ * in conformance to proper British English (also known as correct English) grammar and 
+ * spelling regulations.
+ *
+ *
+ * Example of use:
+ * 
+ * Take your typical string CSS which you want to be be parsed by
+ * Her Majesty the Queen's Spiffing CSS parser:
+ *
+ * $royalty	= "body {
+ *			background-photograph: url('photographs/my_corgies.png');
+ *		}";
+ *
+ * Class is never to be forgotten when compiling such royal stylesheets, therefore, it is
+ * with utter urgence that one begin to compile like so:
+ *
+ * $css 	= new spiffing($royalty);
+ *
+ * As you can see, one has to use but the finest, and simplest, techniques in order to achieve
+ * their goal. Finally, we shall output our stylesheet for our friends across the pond:
+ *
+ * $css->output();
+ *
+ * Perfect!
+ * 
+ * @authors 	@idiot, @kapooht
+ * @license 	☺ License (http://licence.visualidiot.com)
+ *
+ */
 	class spiffing {
 		/*
 		 * The dictionary which has been made into a more accessible array.
