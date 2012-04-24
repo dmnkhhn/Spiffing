@@ -57,7 +57,7 @@
 		 * @var 	boolean
 		 * @access 	public
 		 */
-		public $fail_gracefully	= FALSE;
+		public $fail_gracefully		= FALSE;
 		/*
 		 * Did the operation fail? We shall see.
 		 * This should be set to FALSE by default.
@@ -105,6 +105,9 @@
 					$this->not_found();
 				}
 				$this->css = file_get_contents( $this->file );
+			} else {
+				// No spiffing CSS was found.
+				$this->not_found();
 			}
 			$this->process();
 		}
