@@ -67,12 +67,12 @@
 		 */
 		private $we_failed		= FALSE;
 		/*
-		 * The URL hook
+		 * The URL hook. Check out the .htaccess for further customisation.
 		 *
 		 * @var		string
 		 * @access	private
 		 */
-		private $hook			= 'spiffing=';
+		private $hook			= 'file=';
 		/*
 		 * The file variable
 		 *
