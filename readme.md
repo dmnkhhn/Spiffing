@@ -11,4 +11,4 @@ PHP 5.2+, well-spelt CSS.
 3. Twirl your moustache in typically-British subdued delight.
 
 ## Problems?
-Just send me a message on Twitter. I'm @idiot.
+Just send either one of us a message on Twitter: @idiot, @kapooht.
