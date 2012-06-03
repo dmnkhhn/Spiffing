@@ -57,7 +57,7 @@
 		 * @var 	boolean
 		 * @access 	public
 		 */
-		public $fail_gracefully	= FALSE;
+		public $fail_gracefully		= FALSE;
 		/*
 		 * Did the operation fail? We shall see.
 		 * This should be set to FALSE by default.
@@ -67,12 +67,12 @@
 		 */
 		private $we_failed		= FALSE;
 		/*
-		 * The URL hook
+		 * The URL hook. Check out the .htaccess for further customisation.
 		 *
 		 * @var		string
 		 * @access	private
 		 */
-		private $hook			= 'spiffing=';
+		private $hook			= 'file=';
 		/*
 		 * The file variable
 		 *
@@ -105,6 +105,9 @@
 					$this->not_found();
 				}
 				$this->css = file_get_contents( $this->file );
+			} else {
+				// No spiffing CSS was found.
+				$this->not_found();
 			}
 			$this->process();
 		}
